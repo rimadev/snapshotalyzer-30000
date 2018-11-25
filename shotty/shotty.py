@@ -28,6 +28,7 @@ def snapshots():
 @snapshots.command('list')
 @click.option('--project', default=None,
     help="Only snapshots for the project (tag Project:<name>)")
+
 def list_snapshots(project):
     "List EC2 Snapshots"
 
@@ -44,6 +45,9 @@ def list_snapshots(project):
                     s.progress,
                     s.start_time.strftime("%c")
                 )))
+
+                if s.state ==  'completed': break
+
     return
 
 
@@ -54,6 +58,7 @@ def volumes():
 @volumes.command('list')
 @click.option('--project', default=None,
     help="Only volumes for the project (tag Project:<name>)")
+
 def list_volumes(project):
     "List EC2 Volumes"
 
@@ -77,6 +82,7 @@ def instances():
 @instances.command('list') 
 @click.option('--project', default=None,
     help="Only instances for project (tag Project:<name>)")
+
 def list_instances(project):
     "List EC2 instances"
 
@@ -114,6 +120,7 @@ def stop_instances(project):
 @instances.command('start')
 @click.option('--project', default=None,
     help='Only instances for the project')
+
 def start_instances(project):
     "Start EC2 Instances"
 
